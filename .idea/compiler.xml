@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="streams" />
         <module name="multithreading" />
         <module name="optional" />
-        <module name="factory" />
+        <module name="Optional" />
         <module name="comparable" />
+        <module name="factory" />
+        <module name="streams" />
       </profile>
     </annotationProcessing>
   </component>
