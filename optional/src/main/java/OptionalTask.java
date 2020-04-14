@@ -27,5 +27,12 @@ public class OptionalTask {
 
     private static Integer getMaxSalaryOrElse(Set<Optional<Employee>> employees, int defaultValue) {
         //implement me
+        int maxEmployeeSalaryValue = Integer.MIN_VALUE;
+        int employeeSalary;
+        for (Optional <Employee> employeeItem: employees) {
+            employeeSalary = employeeItem.flatMap(Employee::getSalary).orElse(defaultValue);
+            maxEmployeeSalaryValue = Integer.max(employeeSalary, maxEmployeeSalaryValue);
+        }
+        return maxEmployeeSalaryValue;
     }
 }
