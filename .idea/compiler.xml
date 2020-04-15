@@ -7,10 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="multithreading" />
-        <module name="optional" />
-        <module name="Optional" />
         <module name="comparable" />
+        <module name="Optional" />
         <module name="factory" />
+        <module name="optional" />
         <module name="streams" />
       </profile>
     </annotationProcessing>

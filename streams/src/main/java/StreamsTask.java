@@ -1,5 +1,6 @@
 import com.google.common.collect.ImmutableSet;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,5 +34,15 @@ public class StreamsTask {
      */
     private static Integer findTotalSalaryOfEmployeesBelow22(Collection<List<Employee>> employeesByDepartment) {
         //implement me
+        int sum = 0;
+        List<Employee> listEmployeeAll = new ArrayList<Employee>();
+        for (List<Employee> employeesByDepartmentItem: employeesByDepartment) {
+            listEmployeeAll.addAll(employeesByDepartmentItem);
+        }
+        listEmployeeAll.stream().filter(x-> x.getAge() < 22).findAny().
+                orElseThrow(RuntimeException::new);
+        sum = listEmployeeAll.stream().filter(x-> x.getAge() < 22)
+                .collect(Collectors.summingInt(Employee::getSalary));
+        return sum;
     }
 }
