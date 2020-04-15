@@ -34,15 +34,15 @@ public class StreamsTask {
      */
     private static Integer findTotalSalaryOfEmployeesBelow22(Collection<List<Employee>> employeesByDepartment) {
         //implement me
-        int sum = 0;
-        List<Employee> listEmployeeAll = new ArrayList<Employee>();
+        int sum;
+        List<Employee> listEmployeeAll = new ArrayList<>();
         for (List<Employee> employeesByDepartmentItem: employeesByDepartment) {
             listEmployeeAll.addAll(employeesByDepartmentItem);
         }
         listEmployeeAll.stream().filter(x-> x.getAge() < 22).findAny().
                 orElseThrow(RuntimeException::new);
-        sum = listEmployeeAll.stream().filter(x-> x.getAge() < 22)
-                .collect(Collectors.summingInt(Employee::getSalary));
+        sum = listEmployeeAll.stream().filter(x -> x.getAge() < 22).
+                mapToInt(Employee::getSalary).sum();
         return sum;
     }
 }
