@@ -12,6 +12,8 @@ public class MultithreadingTask {
 
         for (String word : words) {
             //implement me
+            //total += Counter.getLength(word);
+            total += Counter.getLength(word);
         }
 
         //expected output 344
@@ -28,6 +30,16 @@ public class MultithreadingTask {
          */
         public Future<Integer> getLength(String word) {
             //implement me
+            /*return (Future<Integer>) executorService.submit(() -> {
+                word.length();
+            });*/
+            /*executorService.submit( ()-> {
+                 word.length();
+            });*/
+
+            Future<Integer> future = executorService.submit(word::length);
+
+            return future;
         }
     }
 
