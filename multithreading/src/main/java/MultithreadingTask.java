@@ -1,9 +1,10 @@
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class MultithreadingTask {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         String[] words = TEXT.split("\\W+");
 
         Counter counter = new Counter();
@@ -12,9 +13,11 @@ public class MultithreadingTask {
 
         for (String word : words) {
             //implement me
-            //total += Counter.getLength(word);
-            total += Counter.getLength(word);
+            Future<Integer> future = counter.getLength(word);
+            while (!future.isDone()) {}
+            total += future.get();
         }
+        counter.executorService.shutdown();
 
         //expected output 344
         System.out.println(total);
@@ -30,16 +33,7 @@ public class MultithreadingTask {
          */
         public Future<Integer> getLength(String word) {
             //implement me
-            /*return (Future<Integer>) executorService.submit(() -> {
-                word.length();
-            });*/
-            /*executorService.submit( ()-> {
-                 word.length();
-            });*/
-
-            Future<Integer> future = executorService.submit(word::length);
-
-            return future;
+            return executorService.submit(word::length);
         }
     }
 
